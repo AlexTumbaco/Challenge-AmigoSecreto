@@ -2,16 +2,37 @@
 // lógica para resolver el problema.
 
 
-let listaAmigos = [];
+let amigos = []; //arreglo que almacena nombre de amigos
 
-function agregarAmigo () {
-    let nombreAmigo = document.getElementById("amigo").value;
 
+// funcion encargada de agregar amigos a la lista
+function agregarAmigo () { 
+    let nombreAmigo = document.getElementById("amigo").value; // Guarda el nombre
+    
     if ( nombreAmigo != '' ) {
-        listaAmigos.push(nombreAmigo);
-        console.log (listaAmigos);
-        nombreAmigo = document.getElementById("amigo").value= '';
+        amigos.push(nombreAmigo); //agrega nombre al arreglo
+        document.getElementById("amigo").value= '';
+        actualizaLista();
     } else {
         alert ("Por favor, inserte un nombre");
+    }
+}
+
+//funcion encargada de limpiar y mostrar los nombres de los amigos
+function actualizaLista () {
+    let listaHTML = document.getElementById ("listaAmigos");
+    listaHTML.innerHTML = "";
+    for (let i = 0; i < amigos.length ; i ++){
+        listaHTML.innerHTML += `<li>${amigos[i]} </li>`; //muestra los nombres
+    }
+}
+
+// funcion  encargada de mostrar un amigo aleatorio
+function sortearAmigo () {
+    if (amigos.length != 0) {
+        amigoRandom = Math.floor (Math.random()*amigos.length);
+        (document.getElementById("resultado")).innerHTML = amigos [amigoRandom];
+    } else {
+        alert ("La lista de amigos esta vacía, por favor llenela.");   
     }
 }
