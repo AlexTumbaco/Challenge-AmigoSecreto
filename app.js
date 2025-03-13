@@ -18,21 +18,30 @@ function agregarAmigo () {
     }
 }
 
-//funcion encargada de limpiar y mostrar los nombres de los amigos
+//funcion encargada de limpiar la parte visual
+function limpiarLista() {
+    document.getElementById("listaAmigos").innerHTML = "";
+}
+
+//funcion encargada mostrar los nombres de los amigos
 function actualizaLista () {
+    limpiarLista();
     let listaHTML = document.getElementById ("listaAmigos");
-    listaHTML.innerHTML = "";
     for (let i = 0; i < amigos.length ; i ++){
         listaHTML.innerHTML += `<li>${amigos[i]} </li>`; //muestra los nombres
     }
+    
 }
 
 // funcion  encargada de mostrar un amigo aleatorio
 function sortearAmigo () {
     if (amigos.length != 0) {
-        amigoRandom = Math.floor (Math.random()*amigos.length);
-        (document.getElementById("resultado")).innerHTML = amigos [amigoRandom];
+        let amigoRandom = Math.floor (Math.random()*amigos.length);
+        (document.getElementById("resultado")).innerHTML = `El amigo secreto sorteado es : ${amigos [amigoRandom]}`;
+        amigos = [];
+        limpiarLista ();
     } else {
         alert ("La lista de amigos esta vacía, por favor llenela.");   
     }
 }
+
